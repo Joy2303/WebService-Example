@@ -1,0 +1,41 @@
+﻿<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta charset="utf-8" />
+<title>Webservice</title>
+<style>
+</style>
+<script src="jquery.mobile/jquery-2.1.4.min.js"></script>
+<script>
+function llamarWebService()
+{
+ var ciu =$("#ciudades").val();
+ $.get("https://samples.openweathermap.org/data/2.5/weather", {q:ciu, appid: "439d4b804bc8187953eb36d2a8c26a02"}, function(data){})
+
+var tempf = parsefloat(data.main.temp) - 273.5;
+$("#temp").html(temp);
+$("#hum").html(data.main.humidity);
+$("#pre").html(data.main.pressure);
+}
+</script>
+
+</head>
+<body>
+<nav>
+ <h1>Web Service con Phonegap/Cordova</h1>
+</nav>
+
+<div id="container">
+<select id="ciudades">
+<option value="Quito">Quito</option>
+<option value="Guayaquil">Guayaquil</option>
+</select>
+<br/>
+<button onclick="llamarWebService()">Consultar</button>
+<br/>
+<p>Temperatura: <span id="temp"></span></p>
+<p>Humedad: <span id="hum"></span></p>
+<p>Presion: <span id="pre"></span></p>
+</div>
+</body>
+</html>
